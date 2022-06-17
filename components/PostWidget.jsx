@@ -48,7 +48,7 @@ const PostWidget = ({ categories, slug }) => {
             </Link>
           </div>
         </div>
-      ))}
+      )).reverse()}
     </div>
   );
 };
