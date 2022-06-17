@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import { CopyBlock, dracula } from "react-code-blocks";
 
 const PostDetail = ({ post }) => {
     const getContentFragment = (index, text, obj, type) => {
@@ -27,7 +28,7 @@ const PostDetail = ({ post }) => {
       case 'heading-four':
         return <h4 key={index} className="text-md font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h4>;
       case 'code-block':
-        return <code key={index} className="font-semibold bg-gray-300">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</code>;
+        return modifiedText.map((item, i) => ( <div className="my-8"> <React.Fragment key={i}> <CopyBlock text={item} theme={dracula} language="jsx" codeBlock /> </React.Fragment> </div> ))
       case 'image':
         return (
           <img
