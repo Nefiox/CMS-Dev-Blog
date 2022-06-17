@@ -1,9 +1,15 @@
 import Head from "next/head";
-import {PostCard, Categories, PostWidget} from '../components';
+import {PostCard, Categories, PostWidget, Loader} from '../components';
 import { getPosts } from '../services';
 import { FeaturedPosts } from '../sections';
 
 export default function Home({ posts }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
+
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
@@ -31,6 +37,7 @@ export default function Home({ posts }) {
 export async function getStaticProps() {
   const posts = (await getPosts()) || [];
   return {
-    props: { posts }
+    props: { posts },
+    fallback: true,
   }
 }
